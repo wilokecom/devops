@@ -23,9 +23,6 @@ references:
             MYSQL_DATABASE: wordpress
             MYSQL_USER: wordpress
             MYSQL_PASSWORD: wordpress
-      - image: wordpress:latest
-        depends_on:
-          - db
     working_directory: ~/devops
 
   workspace_root: &workspace_root
