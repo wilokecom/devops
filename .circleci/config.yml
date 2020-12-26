@@ -18,11 +18,11 @@ references:
     docker:
       - image: circleci/php:7.2
       - image: circleci/mysql:5.7
-          enviroment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: wordpress
-            MYSQL_USER: wordpress
-            MYSQL_PASSWORD: wordpress
+        enviroment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress
+          MYSQL_USER: wordpress
+          MYSQL_PASSWORD: wordpress
     working_directory: ~/devops
 
   workspace_root: &workspace_root
