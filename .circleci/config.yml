@@ -17,8 +17,7 @@ references:
   container_config: &container_config
     docker:
       - image: circleci/php:7.2
-      - image: mysql:5.7
-          restart: always
+      - image: circleci/mysql:5.7
           enviroment:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: wordpress
@@ -27,7 +26,6 @@ references:
       - image: wordpress:latest
         depends_on:
           - db
-
     working_directory: ~/devops
 
   workspace_root: &workspace_root
