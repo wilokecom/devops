@@ -75,11 +75,11 @@ references:
       - checkout
       - *attach_workspace
       - run:
-            name: Currently work directory
-            command: pwd
+            name: workspace_root
+            command: cd & ls -la *workspace_root
       - run:
-          name: Show everything in the folder
-          command: ls -la
+          name: working_directory
+          command: cd & ls -la *working_directory
       - run:
           name: Run PHP unit tests
           command: ./vendor/bin/phpunit
