@@ -83,9 +83,13 @@ jobs:
     <<: *container_config
     steps:
       - checkout
-      - run:
-          name: Install dependencies
-          command: composer install -n -o
+      - run: sudo composer self-update
+      - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
+          keys:
+            - composer-v1-{{ checksum "composer.lock" }}
+            # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/2.0/caching/)
+            - composer-v1-
+      - run: composer install -n --prefer-dist
       - run:
           name: Install WordPress
           command: bash .circleci/install-wp.sh
@@ -115,5 +119,5 @@ workflows:
       - build
       - test_php72
       - acceptance_singlesite:
-            requires:
-              - test_php72
+          requires:
+            - test_php72
