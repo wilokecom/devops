@@ -76,10 +76,10 @@ references:
       - *attach_workspace
       - run:
             name: workspace_root
-            command: cd & ls -la *workspace_root
+            command: cd & ls -la ~/devops
       - run:
           name: working_directory
-          command: cd & ls -la *working_directory
+          command: cd & ls -la ~/devops/tpm
       - run:
           name: Run PHP unit tests
           command: ./vendor/bin/phpunit
