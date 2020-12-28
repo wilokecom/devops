@@ -79,7 +79,7 @@ references:
             command: cd & ls -la ~/devops
       - run:
           name: Run PHP unit tests
-          command: phpunit
+          command: ./vendor/bin/phpunit
 
 jobs:
   build:
@@ -102,8 +102,8 @@ jobs:
           paths:
             - ./vendor
       - run:
-          name: Create a file
-          command: echo 'Hello' > index.php
+          name: Run PHP unit tests
+          command: ./vendor/bin/phpunit
       - run:
           name: Install WordPress
           command: bash .circleci/install-wp.sh
