@@ -107,14 +107,6 @@ jobs:
       - run:
           name: Install WordPress
           command: bash .circleci/install-wp.sh
-      - persist_to_workspace:
-          root: .
-          paths:
-            - vendor
-      - persist_to_workspace:
-          root: *workspace_root
-          paths:
-            - wordpress
   test_php72:
     <<: *phpunit_job
     docker:
