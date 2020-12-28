@@ -75,21 +75,35 @@ references:
       - checkout
       - *attach_workspace
       - run:
+            name: Currently work directory
+            command: pwd
+      - run:
+          name: Show everything in the folder
+          command: ls -la
+      - run:
           name: Run PHP unit tests
-          command: vendor/bin/phpunit
+          command: ./vendor/bin/phpunit
 
 jobs:
   build:
     <<: *container_config
     steps:
       - checkout
-      - run: sudo composer self-update
+      - run:
+          name: Update Composer
+          command: sudo composer self-update
       - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
           keys:
             - composer-v1-{{ checksum "composer.lock" }}
             # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/2.0/caching/)
             - composer-v1-
-      - run: composer install -n --prefer-dist
+      - run:
+          name: Installing Composer
+          command: composer install -n --prefer-dist
+      - save_cache:
+          key: composer-v1-{{ checksum "composer.json" }}
+          paths:
+            - ./vendor
       - run:
           name: Install WordPress
           command: bash .circleci/install-wp.sh
