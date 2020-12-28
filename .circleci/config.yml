@@ -105,6 +105,9 @@ jobs:
           paths:
             - ./vendor
       - run:
+          name: Create a file
+          command: echo 'Hello' > index.php
+      - run:
           name: Install WordPress
           command: bash .circleci/install-wp.sh
       - persist_to_workspace:
