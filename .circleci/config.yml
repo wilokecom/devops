@@ -103,7 +103,7 @@ jobs:
             - ./vendor
       - run:
           name: Run PHP unit tests
-          command: ./vendor/bin/phpunit
+          command: ls -la
       - run:
           name: Install WordPress
           command: bash .circleci/install-wp.sh
