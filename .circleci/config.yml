@@ -135,8 +135,8 @@ workflows:
     jobs:
       - build
       - test_php72
-        requires:
-          - build
+          requires:
+            - build
       - acceptance_singlesite:
           requires:
             - test_php72
