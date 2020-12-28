@@ -79,7 +79,7 @@ references:
             command: cd & ls -la ~/devops
       - run:
           name: working_directory
-          command: cd & ls -la ~/devops/tpm
+          command: cd & ls -la ~/devops/tmp
       - run:
           name: Run PHP unit tests
           command: ./vendor/bin/phpunit
