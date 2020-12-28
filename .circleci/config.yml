@@ -102,19 +102,8 @@ jobs:
           paths:
             - ./vendor
       - run:
-          name: Run PHP unit tests
-          command: ls -la
-      - run:
-          name: Install WordPress
-          command: bash .circleci/install-wp.sh
-      - persist_to_workspace:
-          root: .
-          paths:
-            - vendor
-      - persist_to_workspace:
-          root: *workspace_root
-          paths:
-            - wordpress
+          name: Create a file
+          command: echo 'Hello' > index.php
   test_php72:
     <<: *phpunit_job
     docker:
