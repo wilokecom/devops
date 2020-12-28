@@ -98,6 +98,7 @@ jobs:
           paths:
             - wordpress
   test_php72:
+    <<: *phpunit_job
     docker:
       - image: circleci/php:7.2
   acceptance_singlesite:
@@ -112,6 +113,7 @@ workflows:
   build_test_deploy:
     jobs:
       - build
+      - test_php72
       - acceptance_singlesite:
             requires:
               - test_php72
