@@ -41,7 +41,7 @@ references:
     <<: *container_config
     docker:
       - image: circleci/php:7.2
-      - image: circleci/mysql:5.7.32
+      - image: circleci/mysql:5.6
         enviroment:
           MYSQL_INITDB_SKIP_TZINFO: CONVERT_TZ()
           MYSQL_HOST: 127.0.0.1
