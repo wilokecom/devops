@@ -1,6 +1,6 @@
 <?php
-	require dirname(__FILE__) . "/vendor/autoload.php";
-	include "../../../wp-load.php";
+	require "./wp/wp-content/plugins/devops/vendor/autoload.php";
+	include "./wp/wp-load.php";
 
 	//	$_tests_dir = getenv( 'WP_TESTS_DIR' );
 	//
