@@ -34,10 +34,10 @@ references:
   copy_vendor: &copy_vendor
     run:
       name: Copy vendor directory
-      command: cp -R /tmp/vendor .
-  move_main_plugin: &move_main_plugin
+      command: cp -R /tmp/vendor wp/wp-content/plugins/devop
+  cp_main_plugin: &cp_main_plugin
     run:
-      name:  Move plugins to plugins folder
+      name:  Copy the main to plugins folder
       command: rsync -av --progress . wp/wp-content/plugins/devops --exclude wp
   # Default configuration for all behat testing jobs
   #
@@ -114,7 +114,8 @@ references:
       - run:
           name: Install rsync
           command: sudo apt install rsync
-      - *move_main_plugin
+      - *cp_main_plugin
+      - *copy_vendor
       - run:
           name: Check Plugin folder
           command: ls -la wp/wp-content/plugins/devops
