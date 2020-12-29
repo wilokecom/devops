@@ -12,7 +12,7 @@ references:
   WP_ORG_USERNAME: &WP_ORG_USERNAME
                      carlalexander
   WP_PATH: &WP_PATH
-             /wp/
+             ./wp/
   # Default container configuration
   #
   container_config: &container_config
@@ -50,34 +50,34 @@ references:
           MYSQL_ROOT_PASSWORD: root
     steps:
       - checkout
-      - run:
-          name: Add WordPress host to hosts file
-          command: echo "127.0.0.1 ${WP_HOST}" | sudo tee -a /etc/hosts
-      - *attach_workspace
-      - *copy_vendor
-      - run:
-          # Our primary container isn't MYSQL so run a sleep command until it's ready.
-          name: Waiting for MySQL to be ready
-          command: |
-            for i in `seq 1 10`;
-            do
-              nc -z 127.0.0.1 3306 && echo Success && exit 0
-              echo -n .
-              sleep 1
-            done
-            echo Failed waiting for MySQL && exit 1
-      - run:
-          name: Install MySQL client
-          command: |
-            sudo apt-get update && \
-            sudo apt-get -y install \
-              default-mysql-client \
-              libjpeg-dev \
-              libpng-dev \
-              libzip-dev
-      - run:
-          name: Install MySQL PHP extension
-          command: sudo docker-php-ext-install mysqli
+#      - run:
+#          name: Add WordPress host to hosts file
+#          command: echo "127.0.0.1 ${WP_HOST}" | sudo tee -a /etc/hosts
+#      - *attach_workspace
+#      - *copy_vendor
+#      - run:
+#          # Our primary container isn't MYSQL so run a sleep command until it's ready.
+#          name: Waiting for MySQL to be ready
+#          command: |
+#            for i in `seq 1 10`;
+#            do
+#              nc -z 127.0.0.1 3306 && echo Success && exit 0
+#              echo -n .
+#              sleep 1
+#            done
+#            echo Failed waiting for MySQL && exit 1
+#      - run:
+#          name: Install MySQL client
+#          command: |
+#            sudo apt-get update && \
+#            sudo apt-get -y install \
+#              default-mysql-client \
+#              libjpeg-dev \
+#              libpng-dev \
+#              libzip-dev
+#      - run:
+#          name: Install MySQL PHP extension
+#          command: sudo docker-php-ext-install mysqli
       - run:
           name: Install WordPress CLI
           command: .circleci/install-wp-cli.sh
@@ -101,25 +101,25 @@ jobs:
     <<: *container_config
     steps:
       - checkout
-      - run:
-          name: Update Composer
-          command: sudo composer self-update
-      - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
-          keys:
-            - composer-v1-{{ checksum "composer.lock" }}
-            # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/2.0/caching/)
-            - composer-v1-
-      - run:
-          name: Installing Composer
-          command: composer install -n --prefer-dist
-      - persist_to_workspace:
-          root: .
-          paths:
-            - vendor
-  test_php72:
-    <<: *phpunit_job
-    docker:
-      - image: circleci/php:7.2-apache
+#      - run:
+#          name: Update Composer
+#          command: sudo composer self-update
+#      - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
+#          keys:
+#            - composer-v1-{{ checksum "composer.lock" }}
+#            # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/2.0/caching/)
+#            - composer-v1-
+#      - run:
+#          name: Installing Composer
+#          command: composer install -n --prefer-dist
+#      - persist_to_workspace:
+#          root: .
+#          paths:
+#            - vendor
+#  test_php72:
+#    <<: *phpunit_job
+#    docker:
+#      - image: circleci/php:7.2-apache
   acceptance_singlesite:
     <<: *behat_job
     environment:
