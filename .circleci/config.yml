@@ -117,7 +117,7 @@ references:
       - *move_main_plugin
       - run:
           name: Check Plugin folder
-          command: ls -la wp/wp-content/plugins
+          command: ls -la wp/wp-content/plugins/devops
   # Default configuration for all phpunit testing jobs
   #
   phpunit_job: &phpunit_job
