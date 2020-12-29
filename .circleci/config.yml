@@ -21,7 +21,7 @@ references:
           MYSQL_DATABASE: wordpress
           MYSQL_USER: wordpress
           MYSQL_PASSWORD: wordpress
-    working_directory: ~/devops
+    working_directory: ~/wp
 
   workspace_root: &workspace_root
                     /tmp
@@ -34,7 +34,10 @@ references:
     run:
       name: Copy vendor directory
       command: cp -R /tmp/vendor .
-
+  copy_wp: &copy_wp
+    run:
+      name: Copy WordPress
+      command: cp -R /tmp/wordpress ./
   # Default configuration for all behat testing jobs
   #
   behat_job: &behat_job
@@ -55,6 +58,7 @@ references:
           command: echo "127.0.0.1 ${WP_HOST}" | sudo tee -a /etc/hosts
       - *attach_workspace
       - *copy_vendor
+      - *copy_wp
       - run:
           # Our primary container isn't MYSQL so run a sleep command until it's ready.
           name: Waiting for MySQL to be ready
@@ -78,13 +82,6 @@ references:
       - run:
           name: Install MySQL PHP extension
           command: sudo docker-php-ext-install mysqli
-      - run:
-          name: Setup WordPress
-          command: .circleci/setup-$WP_TYPE.sh
-      - run:
-          name: Start PHP server
-          command: sudo php -S $WP_HOST:80 -t $WP_CORE_DIR
-          background: True
       - run:
           name: Run Behat tests
           command: vendor/bin/behat --config .circleci/behat.yml --format progress --tags=$WP_TYPE
@@ -116,16 +113,6 @@ jobs:
       - run:
           name: Install WordPress
           command: bash .circleci/install-wp.sh
-      - run:
-         name: Create a folder
-         command: mkdir myfolder
-      - run:
-          name: Create a file in the folder
-          command: touch myfolder/index.php
-      - persist_to_workspace:
-          root: .
-          paths:
-            - myfolder
       - persist_to_workspace:
           root: .
           paths:
