@@ -42,7 +42,7 @@ references:
     <<: *container_config
     docker:
       - image: circleci/php:7.2
-      - image: circleci/mysql:5.7
+      - image: circleci/mysql:5.7-ram
     steps:
       - checkout
       - run:
@@ -52,7 +52,7 @@ references:
       - *copy_vendor
       - run:
           name: Install MySQL client
-          command: sudo apt-get install mysql-client-5.7
+          command: sudo apt-get install mysql-client
       - run:
           name: Install MySQL PHP extension
           command: sudo docker-php-ext-install mysqli
