@@ -101,9 +101,6 @@ jobs:
           key: composer-v1-{{ checksum "composer.json" }}
           paths:
             - ./vendor
-      - run:
-          name: Create a file
-          command: echo 'Hello' > index.php
   test_php72:
     <<: *phpunit_job
     docker:
@@ -123,6 +120,3 @@ workflows:
       - test_php72:
           requires:
             - build
-      - acceptance_singlesite:
-          requires:
-            - test_php72
