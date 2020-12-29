@@ -11,7 +11,8 @@ references:
                         devops
   WP_ORG_USERNAME: &WP_ORG_USERNAME
                      carlalexander
-
+  WP_PATH: &WP_PATH
+             /wp/
   # Default container configuration
   #
   container_config: &container_config
@@ -21,7 +22,7 @@ references:
           MYSQL_DATABASE: wordpress
           MYSQL_USER: wordpress
           MYSQL_PASSWORD: wordpress
-    working_directory: ~/wp
+    working_directory: ~/wiloke
 
   workspace_root: &workspace_root
                     /tmp
@@ -82,12 +83,15 @@ references:
           name: Install MySQL PHP extension
           command: sudo docker-php-ext-install mysqli
       - run:
-          name: Setup WordPress
-          command: .circleci/setup-$WP_TYPE.sh
+          name: Install WordPress CLI
+          command: .circleci/install-wp-cli.sh
       - run:
-          name: Run Behat tests
-          command: vendor/bin/behat --config .circleci/behat.yml --format progress --tags=$WP_TYPE
-
+          name: Start PHP server
+          command: sudo php -S $WP_HOST:80 -t $WP_CORE_DIR
+          background: True
+      - run:
+          name: Check folder
+          command: ls -la
   # Default configuration for all phpunit testing jobs
   #
   phpunit_job: &phpunit_job
@@ -112,9 +116,6 @@ jobs:
       - run:
           name: Installing Composer
           command: composer install -n --prefer-dist
-      - run:
-          name: Install WordPress
-          command: bash .circleci/install-wp.sh
       - persist_to_workspace:
           root: .
           paths:
@@ -133,6 +134,7 @@ jobs:
       - WP_CORE_DIR: *WP_CORE_DIR
       - WP_HOST: *WP_HOST
       - WP_TYPE: singlesite
+      - WP_PATH: *WP_PATH
 
 workflows:
   version: 2
