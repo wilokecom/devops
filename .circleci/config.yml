@@ -54,7 +54,7 @@ references:
           MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_ROOT_PASSWORD: ''
           MYSQL_DATABASE: wordpress
-          WP_PLUGIN_DIR: ./wp/wp-content/plugins/devops
+          PHPUNIT: ./wp/wp-content/plugins/devops/vendor/bin/phpunit
     steps:
       - checkout
       - run:
@@ -124,7 +124,7 @@ references:
           command: ls -la wp/wp-content/plugins/devops
       - run:
           name: PHP Unit Test
-          command: $WP_PLUGIN_DIR/vendor/bin/phpunit
+          command: $PHPUNIT
   # Default configuration for all phpunit testing jobs
   #
   phpunit_job: &phpunit_job
