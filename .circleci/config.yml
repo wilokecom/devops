@@ -54,6 +54,7 @@ references:
           MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_ROOT_PASSWORD: ''
           MYSQL_DATABASE: wordpress
+          WP_PLUGIN_DIR: ./wp/wp-content/plugins/devops
     steps:
       - checkout
       - run:
@@ -105,12 +106,8 @@ references:
           command: .circleci/install-wp-cli.sh
       - run:
           name: Start PHP server
-          command: sudo php -S $WP_HOST:80 -t ./wp
+          command: sudo php -S $WP_HOST:80 -t ${WP_CORE_DIR}
           background: true
-#      - run:
-#          name: Start PHP server
-#          command: sudo php -S $WP_HOST:80 -t $WP_CORE_DIR
-#          background: True
       - run:
           name: Check WP folder
           command: ls -la wp
@@ -125,6 +122,9 @@ references:
       - run:
           name: Check Plugin folder
           command: ls -la wp/wp-content/plugins/devops
+      - run:
+          name: PHP Unit Test
+          command: ${WP_PLUGIN_DIR}/vendor/bin/phpunit
   # Default configuration for all phpunit testing jobs
   #
   phpunit_job: &phpunit_job
