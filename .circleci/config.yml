@@ -76,6 +76,9 @@ references:
               libpng-dev \
               libzip-dev
       - run:
+          name: Start Mysql
+          command: sudo service apache2 restart
+      - run:
           name: Install MySQL PHP extension
           command: sudo docker-php-ext-install mysqli
       - run:
