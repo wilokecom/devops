@@ -16,7 +16,7 @@ references:
   #
   container_config: &container_config
     docker:
-      - image: circleci/php:7.2
+      - image: circleci/php:7.2-apache
         enviroment:
           MYSQL_DATABASE: wordpress
           MYSQL_USER: wordpress
@@ -40,8 +40,8 @@ references:
   behat_job: &behat_job
     <<: *container_config
     docker:
-      - image: circleci/php:7.2
-      - image: circleci/mariadb:10.1-ram
+      - image: circleci/php:7.2-apache
+      - image: circleci/mysql:5.6
         enviroment:
           MYSQL_INITDB_SKIP_TZINFO: CONVERT_TZ()
           MYSQL_HOST: 127.0.0.1
@@ -56,8 +56,19 @@ references:
       - *attach_workspace
       - *copy_vendor
       - run:
+          # Our primary container isn't MYSQL so run a sleep command until it's ready.
+          name: Waiting for MySQL to be ready
+          command: |
+            for i in `seq 1 10`;
+            do
+              nc -z 127.0.0.1 3306 && echo Success && exit 0
+              echo -n .
+              sleep 1
+            done
+            echo Failed waiting for MySQL && exit 1
+      - run:
           name: Install MySQL client
-          command: sudo apt-get install mariadb-server
+          command: sudo apt-get install default-mysql-client
       - run:
           name: Install MySQL PHP extension
           command: sudo docker-php-ext-install mysqli
@@ -120,7 +131,7 @@ jobs:
   test_php72:
     <<: *phpunit_job
     docker:
-      - image: circleci/php:7.2
+      - image: circleci/php:7.2-apache
   acceptance_singlesite:
     <<: *behat_job
     environment:
