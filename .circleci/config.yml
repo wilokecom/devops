@@ -4,7 +4,7 @@ references:
   # Environment variables
   #
   WP_CORE_DIR: &WP_CORE_DIR
-                 /tmp/wordpress
+                 ~/wp
   WP_HOST: &WP_HOST
              wiloke-dev-ops.test
   WP_ORG_PLUGIN_NAME: &WP_ORG_PLUGIN_NAME
@@ -34,7 +34,7 @@ references:
   copy_vendor: &copy_vendor
     run:
       name: Copy vendor directory
-      command: cp /tmp/vendor wp/wp-content/plugins/devops
+      command: cp -r /tmp/vendor wp/wp-content/plugins/devops
   cp_main_plugin: &cp_main_plugin
     run:
       name:  Copy the main to plugins folder
@@ -103,6 +103,10 @@ references:
       - run:
           name: Install WordPress CLI
           command: .circleci/install-wp-cli.sh
+      - run:
+          name: Start PHP server
+          command: sudo php -S $WP_HOST:80 -t $WP_CORE_DIR
+          background: true
 #      - run:
 #          name: Start PHP server
 #          command: sudo php -S $WP_HOST:80 -t $WP_CORE_DIR
