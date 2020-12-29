@@ -57,7 +57,7 @@ references:
       - *copy_vendor
       - run:
           name: Install MySQL client
-          command: sudo apt-get install mariadb-client
+          command: sudo apt-get install mariadb-server
       - run:
           name: Install MySQL PHP extension
           command: sudo docker-php-ext-install mysqli
