@@ -42,6 +42,8 @@ references:
     docker:
       - image: circleci/php:7.2
       - image: circleci/mysql:5.7
+        enviroment:
+          MYSQL_ROOT_PASSWORD: root
     steps:
       - checkout
       - run:
