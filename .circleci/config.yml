@@ -99,8 +99,6 @@ jobs:
           command: ls -la
   test_php72:
     <<: *phpunit_job
-    docker:
-      - image: circleci/php:7.2
   acceptance_singlesite:
     <<: *behat_job
     environment:
