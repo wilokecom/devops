@@ -58,7 +58,6 @@ references:
           command: echo "127.0.0.1 ${WP_HOST}" | sudo tee -a /etc/hosts
       - *attach_workspace
       - *copy_vendor
-      - *copy_wp
       - run:
           # Our primary container isn't MYSQL so run a sleep command until it's ready.
           name: Waiting for MySQL to be ready
@@ -82,6 +81,9 @@ references:
       - run:
           name: Install MySQL PHP extension
           command: sudo docker-php-ext-install mysqli
+      - run:
+          name: Setup WordPress
+          command: .circleci/setup-$WP_TYPE.sh
       - run:
           name: Run Behat tests
           command: vendor/bin/behat --config .circleci/behat.yml --format progress --tags=$WP_TYPE
