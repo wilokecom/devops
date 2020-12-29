@@ -70,10 +70,7 @@ references:
   # Default configuration for all phpunit testing jobs
   #
   phpunit_job: &phpunit_job
-    <<: *container_config
     steps:
-      - checkout
-      - *attach_workspace
       - run:
           name: Folder
           command: ls -la
