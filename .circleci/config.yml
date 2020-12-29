@@ -4,7 +4,7 @@ references:
   # Environment variables
   #
   WP_CORE_DIR: &WP_CORE_DIR
-                 ~/wp
+                 ./wp
   WP_HOST: &WP_HOST
              wiloke-dev-ops.test
   WP_ORG_PLUGIN_NAME: &WP_ORG_PLUGIN_NAME
