@@ -54,7 +54,7 @@ references:
           name: Add WordPress host to hosts file
           command: echo "127.0.0.1 ${WP_HOST}" | sudo tee -a /etc/hosts
       - *attach_workspace
-      - *copy_vendor
+#      - *copy_vendor
       - run:
           # Our primary container isn't MYSQL so run a sleep command until it's ready.
           name: Waiting for MySQL to be ready
