@@ -106,7 +106,7 @@ references:
 #          background: True
       - run:
           name: Check folder
-          command: ls -la
+          command: cd wp & ls -la
   # Default configuration for all phpunit testing jobs
   #
   phpunit_job: &phpunit_job
