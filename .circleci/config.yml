@@ -35,10 +35,6 @@ references:
     run:
       name: Copy vendor directory
       command: cp -R /tmp/vendor .
-  copy_wp: &copy_wp
-    run:
-      name: Copy WordPress
-      command: cp -R /tmp/wordpress ./
   # Default configuration for all behat testing jobs
   #
   behat_job: &behat_job
@@ -120,10 +116,6 @@ jobs:
           root: .
           paths:
             - vendor
-      - persist_to_workspace:
-          root: *workspace_root
-          paths:
-            - wordpress
   test_php72:
     <<: *phpunit_job
     docker:
