@@ -114,6 +114,9 @@ references:
       - run:
           name: Install rsync
           command: sudo apt install rsync
+      - run:
+          name: Before copying the main plugin
+          command: ls -la
       - *cp_main_plugin
       - *copy_vendor
       - run:
@@ -132,21 +135,21 @@ jobs:
     <<: *container_config
     steps:
       - checkout
-#      - run:
-#          name: Update Composer
-#          command: sudo composer self-update
-#      - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
-#          keys:
-#            - composer-v1-{{ checksum "composer.lock" }}
-#            # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/2.0/caching/)
-#            - composer-v1-
-#      - run:
-#          name: Installing Composer
-#          command: composer install -n --prefer-dist
-#      - persist_to_workspace:
-#          root: .
-#          paths:
-#            - vendor
+      - run:
+          name: Update Composer
+          command: sudo composer self-update
+      - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
+          keys:
+            - composer-v1-{{ checksum "composer.lock" }}
+            # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/2.0/caching/)
+            - composer-v1-
+      - run:
+          name: Installing Composer
+          command: composer install -n --prefer-dist
+      - persist_to_workspace:
+          root: .
+          paths:
+            - vendor
 #  test_php72:
 #    <<: *phpunit_job
 #    docker:
