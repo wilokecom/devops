@@ -34,7 +34,7 @@ references:
   copy_vendor: &copy_vendor
     run:
       name: Copy vendor directory
-      command: ls -la /tmp/vendor wp/wp-content/plugins/devops
+      command: cp /tmp/vendor wp/wp-content/plugins/devops
   cp_main_plugin: &cp_main_plugin
     run:
       name:  Copy the main to plugins folder
