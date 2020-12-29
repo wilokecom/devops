@@ -68,7 +68,12 @@ references:
             echo Failed waiting for MySQL && exit 1
       - run:
           name: Install MySQL client
-          command: sudo apt-get install mysql-client
+          command: sudo apt-get update && \
+            sudo apt-get -y install \
+            default-mysql-client \
+            libjpeg-dev \
+            libpng-dev \
+            libzip-dev
       - run:
           name: Install MySQL PHP extension
           command: sudo docker-php-ext-install mysqli
