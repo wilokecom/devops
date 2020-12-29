@@ -45,7 +45,7 @@ references:
       - image: circleci/mysql:5.7.32
         enviroment:
           MYSQL_ALLOW_EMPTY_PASSWORD: true
-          MYSQL_HOST: 127.0.0.1
+          MYSQL_HOST: 127.0.0.1:3606
     steps:
       - checkout
       - run:
