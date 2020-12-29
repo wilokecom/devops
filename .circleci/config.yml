@@ -44,7 +44,7 @@ references:
       - image: circleci/mysql:5.7
         enviroment:
           MYSQL_ROOT_PASSWORD: root
-          MYSQL_TCP_PORT: 3600
+          MYSQL_TCP_PORT: 3306
     steps:
       - checkout
       - run:
