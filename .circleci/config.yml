@@ -21,6 +21,7 @@ references:
           MYSQL_DATABASE: wordpress
           MYSQL_USER: wordpress
           MYSQL_PASSWORD: wordpress
+          DB_USER: ubuntu
     working_directory: ~/devops
 
   workspace_root: &workspace_root
@@ -41,7 +42,7 @@ references:
     <<: *container_config
     docker:
       - image: circleci/php:7.2
-      - image: circleci/mysql:5.7
+      - image: circleci/mysql:5.7.32
         enviroment:
           MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_HOST: 127.0.0.1
