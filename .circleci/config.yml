@@ -76,10 +76,10 @@ references:
       - *copy_vendor
       - run:
           name: Folder
-          command: ls -la
+          command: ls -la ./vendor
       - run:
           name: Run PHP unit tests
-          command: /vendor/bin/phpunit
+          command: ./vendor/bin/phpunit
 
 jobs:
   build:
