@@ -71,6 +71,9 @@ references:
   #
   phpunit_job: &phpunit_job
     steps:
+      - checkout
+      - *attach_workspace
+      - *copy_vendor
       - run:
           name: Folder
           command: ls -la
@@ -95,10 +98,20 @@ jobs:
           name: Installing Composer
           command: composer install -n --prefer-dist
       - run:
-          name: Folder
-          command: ls -la
+          name: Install WordPress
+          command: bash .circleci/install-wp.sh
+      - persist_to_workspace:
+          root: .
+          paths:
+            - vendor
+      - persist_to_workspace:
+          root: *workspace_root
+          paths:
+            - wordpress
   test_php72:
     <<: *phpunit_job
+    docker:
+      - image: circleci/php:7.2
   acceptance_singlesite:
     <<: *behat_job
     environment:
