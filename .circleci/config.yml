@@ -76,11 +76,22 @@ references:
               libpng-dev \
               libzip-dev
       - run:
-          name: Start Mysql
-          command: sudo service apache2 restart
-      - run:
           name: Install MySQL PHP extension
           command: sudo docker-php-ext-install mysqli
+      - run:
+          name: Start Mysql
+          command: |
+            echo "ServerName localhost
+            <Directory ${working_directory}>
+                  Options Indexes FollowSymLinks
+                  AllowOverride All
+                  Require all granted
+            </Directory>" | sudo tee -a /etc/apache2/conf-available/localhost.conf > /dev/null
+
+            echo "<VirtualHost *:80>
+                  DocumentRoot ${working_directory}
+            </VirtualHost>" | sudo tee -a /etc/apache2/sites-available/localhost.conf > /dev/null
+            sudo service apache2 restart
       - run:
           name: Install WordPress CLI
           command: .circleci/install-wp-cli.sh
