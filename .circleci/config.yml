@@ -74,18 +74,6 @@ references:
       - checkout
       - *attach_workspace
       - *copy_vendor
-      - run:
-          name: Folder
-          command: ls -la ./vendor
-      - run:
-          name: Run PHP unit tests
-          command: ./vendor/bin/phpunit
-      - run:
-          name: Copy myfolder
-          command: cp -R /tmp/myfolder .
-      - run:
-          name: Folder
-          command: ls -la ./myfolder
 
 jobs:
   build:
@@ -143,3 +131,6 @@ workflows:
       - test_php72:
           requires:
             - build
+      - acceptance_singlesite:
+          requires:
+            - test_php72
