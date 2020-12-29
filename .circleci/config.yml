@@ -108,7 +108,10 @@ jobs:
           command: bash .circleci/install-wp.sh
       - run:
          name: Create a folder
-         command: mkdir -p myfolder & touch index.php
+         command: mkdir myfolder
+      - run:
+          name: Create a file in the folder
+          command: touch myfolder/index.php
       - persist_to_workspace:
           root: .
           paths:
