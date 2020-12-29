@@ -111,7 +111,7 @@ references:
       - run:
           name: Check WP folder
           command: ls -la wp
-      - run
+      - run:
         name: Install rsync
         command: sudo apt install rsync
       - *move_main_plugin
