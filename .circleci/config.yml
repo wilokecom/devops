@@ -121,7 +121,7 @@ references:
       - *copy_vendor
       - run:
           name: Check Plugin folder
-          command: ls -la wp/wp-content/plugins/devops
+          command: ls -la wp/wp-content/plugins/devops/vendor
       - run:
           name: PHP Unit Test
           command: ./wp/wp-content/plugins/devops/vendor/bin/phpunit
