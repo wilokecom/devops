@@ -72,6 +72,8 @@ references:
   phpunit_job: &phpunit_job
     <<: *container_config
     steps:
+      - checkout
+      - *attach_workspace
       - run:
           name: Run PHP unit tests
           command: /vendor/bin/phpunit
@@ -92,6 +94,9 @@ jobs:
       - run:
           name: Installing Composer
           command: composer install -n --prefer-dist
+      - run:
+          name: Folder
+          command: ls -la
   test_php72:
     <<: *phpunit_job
     docker:
