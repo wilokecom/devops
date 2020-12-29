@@ -38,7 +38,7 @@ references:
   move_main_plugin: &move_main_plugin
     run:
       name:  Move plugins to plugins folder
-      command: sudo apt install rsync & rsync -av --progress . wp/wp-content/plugins --exclude wp
+      command: rsync -av --progress . wp/wp-content/plugins --exclude wp
   # Default configuration for all behat testing jobs
   #
   behat_job: &behat_job
@@ -111,6 +111,9 @@ references:
       - run:
           name: Check WP folder
           command: ls -la wp
+      - run
+        name: Install rsync
+        command: sudo apt install rsync
       - *move_main_plugin
       - run:
           name: Check Plugin folder
