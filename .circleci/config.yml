@@ -149,7 +149,7 @@ jobs:
       - run:
           name: Installing Composer
           command: composer install -n --prefer-dist
-       - run:
+      - run:
           name: Generate autoload
           command: composer dump-autoload
       - persist_to_workspace:
