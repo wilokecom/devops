@@ -83,6 +83,9 @@ references:
       - run:
           name: Copy myfolder
           command: cp -R /tmp/myfolder .
+      - run:
+          name: Folder
+          command: ls -la ./myfolder
 
 jobs:
   build:
