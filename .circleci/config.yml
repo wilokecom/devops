@@ -72,11 +72,6 @@ references:
   phpunit_job: &phpunit_job
     <<: *container_config
     steps:
-      - checkout
-      - *attach_workspace
-      - run:
-            name: workspace_root
-            command: cd & ls -la ~/devops
       - run:
           name: Run PHP unit tests
           command: ./vendor/bin/phpunit
