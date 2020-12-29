@@ -18,7 +18,6 @@ references:
     docker:
       - image: circleci/php:7.2
         enviroment:
-          MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: wordpress
           MYSQL_USER: wordpress
           MYSQL_PASSWORD: wordpress
@@ -42,7 +41,7 @@ references:
     <<: *container_config
     docker:
       - image: circleci/php:7.2
-      - image: circleci/mysql:5.7-ram
+      - image: circleci/mysql:5.7
     steps:
       - checkout
       - run:
