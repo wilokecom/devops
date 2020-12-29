@@ -60,7 +60,7 @@ references:
           name: Add WordPress host to hosts file
           command: echo "127.0.0.1 ${WP_HOST}" | sudo tee -a /etc/hosts
       - *attach_workspace
-#      - *copy_vendor
+      - *copy_vendor
       - run:
           # Our primary container isn't MYSQL so run a sleep command until it's ready.
           name: Waiting for MySQL to be ready
@@ -118,7 +118,6 @@ references:
           name: Before copying the main plugin
           command: ls -la
       - *cp_main_plugin
-      - *copy_vendor
       - run:
           name: Check Plugin folder
           command: ls -la wp/wp-content/plugins/devops
