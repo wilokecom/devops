@@ -38,7 +38,7 @@ references:
   move_main_plugin: &move_main_plugin
     run:
       name:  Move plugins to plugins folder
-      command: mv /!(wp) wp/wp-content/plugins
+      command: shopt -s extglob & mv !(wp) wp/wp-content/plugins
   # Default configuration for all behat testing jobs
   #
   behat_job: &behat_job
