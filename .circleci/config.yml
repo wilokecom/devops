@@ -41,7 +41,7 @@ references:
     <<: *container_config
     docker:
       - image: circleci/php:7.2
-      - image: circleci/mysql:5.6
+      - image: circleci/mariadb:10.1-ram
         enviroment:
           MYSQL_INITDB_SKIP_TZINFO: CONVERT_TZ()
           MYSQL_HOST: 127.0.0.1
@@ -57,7 +57,7 @@ references:
       - *copy_vendor
       - run:
           name: Install MySQL client
-          command: sudo apt-get install default-mysql-client
+          command: sudo apt-get install mariadb-client
       - run:
           name: Install MySQL PHP extension
           command: sudo docker-php-ext-install mysqli
