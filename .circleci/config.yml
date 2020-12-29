@@ -136,6 +136,6 @@ workflows:
 #      - test_php72:
 #          requires:
 #            - build
-      - acceptance_singlesite:
+      - acceptance_singlesite
 #          requires:
 #            - test_php72
