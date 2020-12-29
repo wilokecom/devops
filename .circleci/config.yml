@@ -81,10 +81,10 @@ references:
       - run:
           name: Install WordPress CLI
           command: .circleci/install-wp-cli.sh
-      - run:
-          name: Start PHP server
-          command: sudo php -S $WP_HOST:80 -t $WP_CORE_DIR
-          background: True
+#      - run:
+#          name: Start PHP server
+#          command: sudo php -S $WP_HOST:80 -t $WP_CORE_DIR
+#          background: True
       - run:
           name: Check folder
           command: ls -la
