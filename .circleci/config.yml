@@ -43,8 +43,9 @@ references:
       - image: circleci/php:7.2
       - image: circleci/mysql:5.7
         enviroment:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_TCP_PORT: 3306
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_ROOT_HOST: %
     steps:
       - checkout
       - run:
