@@ -80,6 +80,9 @@ references:
       - run:
           name: Run PHP unit tests
           command: ./vendor/bin/phpunit
+      - run:
+          name: Copy myfolder
+          command: cp -R /tmp/myfolder .
 
 jobs:
   build:
@@ -100,6 +103,13 @@ jobs:
       - run:
           name: Install WordPress
           command: bash .circleci/install-wp.sh
+      - run:
+         name: Create a folder
+         command: mkdir -p myfolder & touch index.php
+      - persist_to_workspace:
+          root: .
+          paths:
+            - myfolder
       - persist_to_workspace:
           root: .
           paths:
