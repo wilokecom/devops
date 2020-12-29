@@ -47,7 +47,8 @@ references:
           MYSQL_HOST: 127.0.0.1
           MYSQL_TCP_PORT: 3306
           MYSQL_UNIX_PORT: 3306
-          MYSQL_ROOT_PASSWORD: root
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_ROOT_PASSWORD: ''
           MYSQL_DATABASE: wordpress
           MYSQL_USER: wordpress
           MYSQL_PASSWORD: wordpress
