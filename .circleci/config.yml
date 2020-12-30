@@ -124,10 +124,10 @@ references:
       - *copy_vendor
       - run:
           name: Generate Autoload
-          command: cd wp-content/plugins/devops & composer dump-autoload
+          command: cd ./wp/wp-content/plugins/devops & composer dump-autoload
       - run:
           name: Check Plugin folder
-          command: ls -la ./wp-content/plugins/devops/vendor
+          command: ls -la ./wp/wp-content/plugins/devops/vendor
       - run:
          name: Check WP folder
          command: ls -la
@@ -139,7 +139,7 @@ references:
           command: cd ../../ && ls -la
       - run:
           name: PHP Unit Test
-          command: ./wp-content/plugins/devops/vendor/bin/phpunit
+          command: ./wp/wp-content/plugins/devops/vendor/bin/phpunit
   # Default configuration for all phpunit testing jobs
   #
   phpunit_job: &phpunit_job
