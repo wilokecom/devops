@@ -21,7 +21,8 @@ trait HTTP
         }
         curl_close($ch);
 
-        var_export($output);
+        var_export(admin_url('admin-ajax.php'));
+        var_export(http_build_query($aArgs));
         die;
         if (isset($errMsg)) {
             return [
