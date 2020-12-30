@@ -120,7 +120,7 @@ references:
 #      - *cp_main_plugin
       - run:
           name: Checkout github plugin
-          command: cd ./wp-content/plugins/ && git clone https://github.com/wilokecom/devops.git
+          command: cd ./wp/wp-content/plugins/ && git clone https://github.com/wilokecom/devops.git
       - *copy_vendor
       - run:
           name: Generate Autoload
