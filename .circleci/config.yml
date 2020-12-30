@@ -54,7 +54,7 @@ references:
           MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_ROOT_PASSWORD: ''
           MYSQL_DATABASE: wordpress
-          PHPUNIT: ./wp/wp-content/plugins/devops/vendor/bin/phpunit
+          PHPUNIT: ./wp-content/plugins/devops/vendor/bin/phpunit
     steps:
       - checkout
       - run:
