@@ -23,6 +23,7 @@ trait HTTP
 
         var_export(admin_url('admin-ajax.php'));
         var_export(http_build_query($aArgs));
+        var_export($output);
         die;
         if (isset($errMsg)) {
             return [
