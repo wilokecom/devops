@@ -22,11 +22,11 @@ class SimpleTest extends TestCase
 
     public function testTrueIsTrue()
     {
-//        $aResponse = $this->post([
-//            'action' => 'login',
-//            'username' => 'wiloke'
-//        ]);
+        $aResponse = $this->post([
+            'action' => 'login',
+            'username' => 'wiloke'
+        ]);
 
-        $this->assertTrue(function_exists('curl_init'));
+        $this->assertTrue($aResponse['success']);
     }
 }

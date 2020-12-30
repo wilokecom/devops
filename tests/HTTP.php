@@ -21,6 +21,7 @@
 			}
 			curl_close($ch);
 
+			var_export($output);die;
 			if (isset($errMsg)) {
 				return [
 					'success' => false,
