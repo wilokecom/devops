@@ -22,7 +22,7 @@ references:
           MYSQL_DATABASE: wordpress
           MYSQL_USER: wordpress
           MYSQL_PASSWORD: wordpress
-    working_directory: ~/wiloke/wp-content/plugins/devops
+    working_directory: ~/wp-content/plugins/devops
 
   workspace_root: &workspace_root
                     /tmp
