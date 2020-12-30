@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
         colors="true"
-        bootstrap="./wp-content/plugins/devops/tests/bootstrap.php"
+        bootstrap="wp-content/plugins/devops/tests/bootstrap.php"
         convertErrorsToExceptions="true"
         convertNoticesToExceptions="true"
         convertWarningsToExceptions="true"
 >
     <testsuites>
         <testsuite name="Application Test Suite">
-            <directory prefix="Test">./wp-content/plugins/devops/</directory>
+            <directory prefix="Test">wp-content/plugins/devops/</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./wp-content/plugins/devops/</directory>
+            <directory suffix=".php">wp-content/plugins/devops/</directory>
         </whitelist>
     </filter>
     <php>
