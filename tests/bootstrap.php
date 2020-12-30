@@ -1,6 +1,8 @@
 <?php
 	require "./vendor/autoload.php";
-	include "../../../../wp-load.php";
+	echo dirname(dirname(__FILE__)) . '<br />';
+	echo dirname(dirname(dirname(__FILE__))) . '<br />';
+	echo dirname(dirname(dirname(dirname(__FILE__)))) . '<br />';
 
 	//	$_tests_dir = getenv( 'WP_TESTS_DIR' );
 	//
