@@ -132,6 +132,9 @@ references:
          name: Check WP folder
          command: ls -la
       - run:
+          name: Check WP folder 1
+          command: cd ../ && ls -la
+      - run:
           name: PHP Unit Test
           command: ./wp-content/plugins/devops/vendor/bin/phpunit
   # Default configuration for all phpunit testing jobs
