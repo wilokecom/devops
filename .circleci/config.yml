@@ -80,13 +80,11 @@ references:
               default-mysql-client \
               libjpeg-dev \
               libpng-dev \
-              libzip-dev
+              libzip-dev \
+              libcurl4-gnutls-dev
       - run:
           name: Install MySQL PHP extension
           command: sudo docker-php-ext-install mysqli
-      - run:
-         name: Install CURL
-         command: sudo docker-php-ext-install curl
       - run:
           name: Create Mysql Database
           command: mysql -h 127.0.0.1 -u root -e "create database wordpress;"
