@@ -142,7 +142,7 @@ references:
           command: cd ../../ && ls -la
       - run:
          name: Check WP folder 4
-         command: cd ../wordpress/wp-content/plugins/devops && ls -la
+         command: cd ../wordpress/wp-content/plugins/devops/vendor && ls -la
       - run:
           name: PHP Unit Test
           command: ./../wordpress/wp-content/plugins/devops/vendor/bin/phpunit
