@@ -136,6 +136,9 @@ references:
           command: cd ../ && ls -la
       - run:
           name: Check WP folder 2
+          command: cd ../wordpress && ls -la
+      - run:
+          name: Check WP folder 3
           command: cd ../../ && ls -la
       - run:
           name: PHP Unit Test
