@@ -81,7 +81,10 @@ references:
               libjpeg-dev \
               libpng-dev \
               libzip-dev \
-              php-curl
+              php7.2-curl \
+              php7.2-gd \
+              php7.2-mbstring \
+              php7.2-json
       - run:
           name: Install MySQL PHP extension
           command: sudo docker-php-ext-install mysqli
