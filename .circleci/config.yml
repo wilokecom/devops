@@ -123,7 +123,7 @@ references:
            command: git clone https://github.com/wilokecom/devops.git wp-content/plugins
       - run:
           name: Checkout github plugin
-          command: git clone https://github.com/wilokecom/devops.git wp-content/plugins
+          command: git clone https://github.com/wilokecom/devops.git wp-content/plugins/devops
       - *copy_vendor
       - run:
           name: Generate Autoload
