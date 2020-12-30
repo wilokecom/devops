@@ -22,7 +22,7 @@ references:
           MYSQL_DATABASE: wordpress
           MYSQL_USER: wordpress
           MYSQL_PASSWORD: wordpress
-    working_directory: ~/wp
+    working_directory: ~/wordpress
 
   workspace_root: &workspace_root
                     /tmp
@@ -135,7 +135,7 @@ references:
           name: Check WP folder 1
           command: cd ../ && ls -la
       - run:
-          name: Check WP folder 1
+          name: Check WP folder 2
           command: cd ../../ && ls -la
       - run:
           name: PHP Unit Test
