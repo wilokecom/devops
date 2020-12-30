@@ -1,6 +1,17 @@
 <?php
-	require "./wp-content/plugins/devops/vendor/autoload.php";
-	include './wp-load.php';
+if (is_file("./wp-content/plugins/devops/vendor/autoload.php")) {
+    require "./wp-content/plugins/devops/vendor/autoload.php";
+} else {
+    require "./vendor/autoload.php";
+}
+
+if (is_file("./wp-load.php")) {
+    include './wp-load.php';
+} else {
+    include "../../../../wp-load.php";
+}
+
+
 
 	//	$_tests_dir = getenv( 'WP_TESTS_DIR' );
 	//

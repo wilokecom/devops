@@ -145,7 +145,7 @@ references:
          command: cd ../wordpress/wp-content/plugins/devops/vendor && ls -la
       - run:
           name: PHP Unit Test
-          command: ./../wordpress/wp-content/plugins/devops/vendor/bin/phpunit
+          command: ./../wordpress/wp-content/plugins/devops/vendor/bin/phpunit tests
   # Default configuration for all phpunit testing jobs
   #
   phpunit_job: &phpunit_job
