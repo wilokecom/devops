@@ -22,7 +22,7 @@ references:
           MYSQL_DATABASE: wordpress
           MYSQL_USER: wordpress
           MYSQL_PASSWORD: wordpress
-    working_directory: ~/wp-content/plugins/devops
+    working_directory: ./wp-content/plugins/devops
 
   workspace_root: &workspace_root
                     /tmp
@@ -134,6 +134,9 @@ references:
       - run:
           name: Check WP folder 1
           command: cd ../ && ls -la
+      - run:
+          name: Check WP folder 2
+          command: cd ../../ && ls -la
       - run:
           name: PHP Unit Test
           command: ./wp-content/plugins/devops/vendor/bin/phpunit
