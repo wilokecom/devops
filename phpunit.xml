@@ -8,12 +8,12 @@
 >
     <testsuites>
         <testsuite name="Application Test Suite">
-            <directory prefix="Test">/tests/</directory>
+            <directory prefix="Test">wp-content/plugins/devops/tests/</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">/tests/</directory>
+            <directory suffix=".php">wp-content/plugins/devops/tests/</directory>
         </whitelist>
     </filter>
     <php>
