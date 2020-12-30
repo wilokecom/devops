@@ -4,7 +4,7 @@ references:
   # Environment variables
   #
   WP_CORE_DIR: &WP_CORE_DIR
-                 ./wp
+                 ./
   WP_HOST: &WP_HOST
              wiloke-dev-ops.test
   WP_ORG_PLUGIN_NAME: &WP_ORG_PLUGIN_NAME
@@ -127,10 +127,10 @@ references:
           command: cd wp-content/plugins/devops & composer dump-autoload
       - run:
           name: Check Plugin folder
-          command: ls -la wp/wp-content/plugins/devops/vendor
+          command: ls -la ./wp-content/plugins/devops/vendor
       - run:
           name: PHP Unit Test
-          command: ./wp/wp-content/plugins/devops/vendor/bin/phpunit
+          command: ./wp-content/plugins/devops/vendor/bin/phpunit
   # Default configuration for all phpunit testing jobs
   #
   phpunit_job: &phpunit_job
