@@ -9,7 +9,7 @@ trait HTTP
     public function post(array $aArgs)
     {
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, admin_url('admin-ajax.php'));
+        curl_setopt($ch, CURLOPT_URL, 'http://localhost/admin-ajax.php');
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($aArgs));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
