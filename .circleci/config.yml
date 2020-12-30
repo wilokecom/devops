@@ -144,6 +144,9 @@ references:
          name: Check WP folder 4
          command: cd ../wordpress/wp-content/plugins/devops/vendor && ls -la
       - run:
+          name: Active the plugin
+          command: ./wp-cli.phar plugin activate devops
+      - run:
           name: PHP Unit Test
           command: ./../wordpress/wp-content/plugins/devops/vendor/bin/phpunit tests
   # Default configuration for all phpunit testing jobs
