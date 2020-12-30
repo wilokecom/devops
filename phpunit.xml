@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
         colors="true"
-        bootstrap="wp-content/plugins/devops/bootstrap.php"
+        bootstrap="wp-content/plugins/devops/tests/bootstrap.php"
         convertErrorsToExceptions="true"
         convertNoticesToExceptions="true"
         convertWarningsToExceptions="true"
