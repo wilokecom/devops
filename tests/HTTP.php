@@ -21,9 +21,6 @@ trait HTTP
         }
         curl_close($ch);
 
-        var_export(http_build_query($aArgs));
-        var_export($output);
-        die;
         if (isset($errMsg)) {
             return [
                 'success' => false,
