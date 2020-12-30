@@ -6,7 +6,7 @@ references:
   WP_CORE_DIR: &WP_CORE_DIR
                  ./../wordpress
   WP_HOST: &WP_HOST
-             wiloke-dev-ops.test
+             localhost
   WP_ORG_PLUGIN_NAME: &WP_ORG_PLUGIN_NAME
                         devops
   WP_ORG_USERNAME: &WP_ORG_USERNAME
