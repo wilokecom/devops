@@ -8,7 +8,7 @@ if (is_file("./wp-content/plugins/devops/vendor/autoload.php")) {
 if (is_file("./wp-load.php")) {
     include './wp-load.php';
 } else {
-    include "../../../../wp-load.php";
+    include "../../../wp-load.php";
 }
 
 
