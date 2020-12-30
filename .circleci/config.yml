@@ -107,7 +107,7 @@ references:
           command: .circleci/install-wp-cli.sh
       - run:
           name: Start PHP server
-          command: sudo php -S $WP_HOST:80 -t ${WP_CORE_DIR}
+          command: sudo php -S http://localhost:8888 -t ${WP_CORE_DIR}
           background: true
 #      - run:
 #          name: Check WP folder
