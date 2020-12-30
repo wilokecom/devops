@@ -22,7 +22,7 @@ references:
           MYSQL_DATABASE: wordpress
           MYSQL_USER: wordpress
           MYSQL_PASSWORD: wordpress
-    working_directory: ./
+    working_directory: ~/wp
 
   workspace_root: &workspace_root
                     /tmp
@@ -34,7 +34,7 @@ references:
   copy_vendor: &copy_vendor
     run:
       name: Copy vendor directory
-      command: cp -r /tmp/vendor wp-content/plugins/devops
+      command: cp -r /tmp/vendor ./wp-content/plugins/devops
   cp_main_plugin: &cp_main_plugin
     run:
       name:  Copy the main to plugins folder
@@ -120,7 +120,7 @@ references:
 #      - *cp_main_plugin
       - run:
           name: Checkout github plugin
-          command: cd wp-content/plugins/ && git clone https://github.com/wilokecom/devops.git
+          command: cd ./wp-content/plugins/ && git clone https://github.com/wilokecom/devops.git
       - *copy_vendor
       - run:
           name: Generate Autoload
