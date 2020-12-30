@@ -129,8 +129,8 @@ references:
           name: Check Plugin folder
           command: ls -la ./wp-content/plugins/devops/vendor
       - run:
-         name: Check WP folder
-         command: ls -la
+          name: Check WP folder
+          command: ls -la
       - run:
           name: Check WP folder 1
           command: cd ../ && ls -la
