@@ -188,6 +188,8 @@ jobs:
 #          paths:
 #            - vendor
   build_voi_duong_dan_moi:
+    docker:
+      - image: circleci/php:7.2-apache
     working_directory: ~/wiloke
     steps:
       - checkout
