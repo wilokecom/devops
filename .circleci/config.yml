@@ -203,7 +203,7 @@ jobs:
             - vendor
       - run:
           name: Workspace co gi
-          command: ls -la $WORKSPACE_ROOT
+          command: ls -la /tmp
       - run:
           name: Build co gi 1
           command: ls -la
