@@ -60,6 +60,9 @@ references:
       - run:
           name: Add WordPress host to hosts file
           command: echo "127.0.0.1 ${WP_HOST}" | sudo tee -a /etc/hosts
+      - run:
+          name: Workspace co gi
+          command: cd *workspace_root && ls -la
       - *attach_workspace
       - run:
           # Our primary container isn't MYSQL so run a sleep command until it's ready.
@@ -119,9 +122,9 @@ references:
 #          name: Before copying the main plugin
 #          command: ls -la
 #      - *cp_main_plugin
-      - run:
-          name: Checkout github plugin
-          command: cd ./../wordpress/wp-content/plugins/ && git clone https://github.com/wilokecom/devops.git
+#      - run:
+#          name: Checkout github plugin
+#          command: cd ./../wordpress/wp-content/plugins/ && git clone https://github.com/wilokecom/devops.git
       - *copy_vendor
       - run:
           name: Generate Autoload
@@ -163,44 +166,44 @@ jobs:
     <<: *container_config
     steps:
       - checkout
-      - run:
-          name: Kiem tra folder
-          command: ls -la
-      - run:
-          name: Kiem tra folder cha
-          command: cd ../ && ls -la
 #      - run:
-#          name: Update Composer
-#          command: sudo composer self-update
-#      - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
-#          keys:
-#            - composer-v1-{{ checksum "composer.lock" }}
-#            # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/2.0/caching/)
-#            - composer-v1-
+#          name: Kiem tra folder
+#          command: ls -la
 #      - run:
-#          name: Installing Composer
-#          command: composer install -n --prefer-dist
+#          name: Kiem tra folder cha
+#          command: cd ../ && ls -la
+      - run:
+          name: Update Composer
+          command: sudo composer self-update
+      - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
+          keys:
+            - composer-v1-{{ checksum "composer.lock" }}
+            # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/2.0/caching/)
+            - composer-v1-
+      - run:
+          name: Installing Composer
+          command: composer install -n --prefer-dist
+      - run:
+          name: Generate autoload
+          command: composer dump-autoload
+      - persist_to_workspace:
+          root: .
+          paths:
+            - vendor
+#  build_voi_duong_dan_moi:
+#    docker:
+#      - image: circleci/php:7.2-apache
+#    working_directory: ~/wiloke
+#    steps:
 #      - run:
-#          name: Generate autoload
-#          command: composer dump-autoload
-#      - persist_to_workspace:
-#          root: .
-#          paths:
-#            - vendor
-  build_voi_duong_dan_moi:
-    docker:
-      - image: circleci/php:7.2-apache
-    working_directory: ~/wiloke
-    steps:
-      - run:
-          name: Kiem tra folder
-          command: ls -la
-      - run:
-          name: Kiem tra folder cha
-          command: cd ../ && ls -la
-      - run:
-         name: Kiem tra folder ong
-         command: cd ../../ && ls -la
+#          name: Kiem tra folder
+#          command: ls -la
+#      - run:
+#          name: Kiem tra folder cha
+#          command: cd ../ && ls -la
+#      - run:
+#         name: Kiem tra folder ong
+#         command: cd ../../ && ls -la
 #  test_php72:
 #    <<: *phpunit_job
 #    docker:
@@ -218,12 +221,12 @@ workflows:
   build_test_deploy:
     jobs:
       - build
-      - build_voi_duong_dan_moi:
-          requires:
-            - build
+#      - build_voi_duong_dan_moi:
+#          requires:
+#            - build
 #      - test_php72:
 #          requires:
 #            - build
-#      - acceptance_singlesite:
-#          requires:
-#            - build
+      - acceptance_singlesite:
+          requires:
+            - build
