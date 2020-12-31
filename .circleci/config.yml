@@ -56,7 +56,7 @@ references:
           MYSQL_DATABASE: wordpress
           PHPUNIT: ./wp/wp-content/plugins/devops/vendor/bin/phpunit
     steps:
-#      - checkout
+      - checkout
       - run:
           name: Add WordPress host to hosts file
           command: echo "127.0.0.1 ${WP_HOST}" | sudo tee -a /etc/hosts
