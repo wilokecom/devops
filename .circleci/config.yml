@@ -61,8 +61,14 @@ references:
           name: Add WordPress host to hosts file
           command: echo "127.0.0.1 ${WP_HOST}" | sudo tee -a /etc/hosts
       - run:
+          name: Truoc khi copy workspace
+          command: ls -la
+      - run:
           name: Workspace co gi
           command: cd *workspace_root && ls -la
+      - run:
+          name: Kiem tra lai working directory
+          command: ls -la
       - *attach_workspace
       - run:
           # Our primary container isn't MYSQL so run a sleep command until it's ready.
@@ -186,10 +192,16 @@ jobs:
       - run:
           name: Generate autoload
           command: composer dump-autoload
+      - run:
+          name: Build co gi
+          command: ls -la
       - persist_to_workspace:
           root: .
           paths:
             - vendor
+      - run:
+          name: Build co gi 1
+          command: ls -la
 #  build_voi_duong_dan_moi:
 #    docker:
 #      - image: circleci/php:7.2-apache
@@ -227,6 +239,6 @@ workflows:
 #      - test_php72:
 #          requires:
 #            - build
-      - acceptance_singlesite:
-          requires:
-            - build
+#      - acceptance_singlesite:
+#          requires:
+#            - build
