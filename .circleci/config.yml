@@ -192,13 +192,15 @@ jobs:
       - image: circleci/php:7.2-apache
     working_directory: ~/wiloke
     steps:
-      - checkout
       - run:
           name: Kiem tra folder
           command: ls -la
       - run:
           name: Kiem tra folder cha
           command: cd ../ && ls -la
+      - run:
+         name: Kiem tra folder ong
+         command: cd ../../ && ls -la
 #  test_php72:
 #    <<: *phpunit_job
 #    docker:
