@@ -164,43 +164,60 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Update Composer
-          command: sudo composer self-update
-      - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
-          keys:
-            - composer-v1-{{ checksum "composer.lock" }}
-            # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/2.0/caching/)
-            - composer-v1-
+          name: Kiem tra folder
+          command: ls -la
       - run:
-          name: Installing Composer
-          command: composer install -n --prefer-dist
+          name: Kiem tra folder cha
+          command: cd ../ && ls -la
+#      - run:
+#          name: Update Composer
+#          command: sudo composer self-update
+#      - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
+#          keys:
+#            - composer-v1-{{ checksum "composer.lock" }}
+#            # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/2.0/caching/)
+#            - composer-v1-
+#      - run:
+#          name: Installing Composer
+#          command: composer install -n --prefer-dist
+#      - run:
+#          name: Generate autoload
+#          command: composer dump-autoload
+#      - persist_to_workspace:
+#          root: .
+#          paths:
+#            - vendor
+  build_voi_duong_dan_moi:
+    working_directory: ~/wiloke
+    steps:
+      - checkout
       - run:
-          name: Generate autoload
-          command: composer dump-autoload
-      - persist_to_workspace:
-          root: .
-          paths:
-            - vendor
+          name: Kiem tra folder
+          command: ls -la
+      - run:
+          name: Kiem tra folder cha
+          command: cd ../ && ls -la
 #  test_php72:
 #    <<: *phpunit_job
 #    docker:
 #      - image: circleci/php:7.2-apache
-  acceptance_singlesite:
-    <<: *behat_job
-    environment:
-      - WP_CORE_DIR: *WP_CORE_DIR
-      - WP_HOST: *WP_HOST
-      - WP_TYPE: singlesite
-      - WP_PATH: *WP_PATH
+#  acceptance_singlesite:
+#    <<: *behat_job
+#    environment:
+#      - WP_CORE_DIR: *WP_CORE_DIR
+#      - WP_HOST: *WP_HOST
+#      - WP_TYPE: singlesite
+#      - WP_PATH: *WP_PATH
 
 workflows:
   version: 2
   build_test_deploy:
     jobs:
       - build
+      - build_voi_duong_dan_moi
 #      - test_php72:
 #          requires:
 #            - build
-      - acceptance_singlesite:
-          requires:
-            - build
+#      - acceptance_singlesite:
+#          requires:
+#            - build
