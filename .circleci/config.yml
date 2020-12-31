@@ -119,10 +119,10 @@ references:
           command: .circleci/install-wp-cli.sh
       - checkout:
           path: ./wp-content/plugins/devops
-      - run:
-          name: Start PHP server
-          command: sudo php -S localhost:8888 -t ${WP_CORE_DIR}
-          background: true
+#      - run:
+#          name: Start PHP server
+#          command: sudo php -S localhost:8888 -t ${WP_CORE_DIR}
+#          background: true
       #      - run:
       #          name: Check WP folder
       #          command: ls -la wp
@@ -143,9 +143,9 @@ references:
 #      - run:
 #          name: Check Plugin folder
 #          command: ls -la ./../wordpress/wp-content/plugins/devops/vendor
-#      - run:
-#          name: Check WP folder
-#          command: ls -la
+      - run:
+          name: Check WP folder
+          command: ls -la ./wp-content/plugins/devops
 #      - run:
 #          name: Check WP folder 1
 #          command: cd ../ && ls -la
