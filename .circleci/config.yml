@@ -118,7 +118,7 @@ references:
           name: Install WordPress CLI
           command: .circleci/install-wp-cli.sh
       - checkout:
-          path: ./wp-content/plugins
+          path: ./wp-content/plugins/devops
       - run:
           name: Start PHP server
           command: sudo php -S localhost:8888 -t ${WP_CORE_DIR}
