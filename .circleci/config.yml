@@ -235,13 +235,13 @@ jobs:
 #    <<: *phpunit_job
 #    docker:
 #      - image: circleci/php:7.2-apache
-#  acceptance_singlesite:
-#    <<: *behat_job
-#    environment:
-#      - WP_CORE_DIR: *WP_CORE_DIR
-#      - WP_HOST: *WP_HOST
-#      - WP_TYPE: singlesite
-#      - WP_PATH: *WP_PATH
+  acceptance_singlesite:
+    <<: *behat_job
+    environment:
+      - WP_CORE_DIR: *WP_CORE_DIR
+      - WP_HOST: *WP_HOST
+      - WP_TYPE: singlesite
+      - WP_PATH: *WP_PATH
 
 workflows:
   version: 2
