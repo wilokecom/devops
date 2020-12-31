@@ -218,7 +218,7 @@ workflows:
   build_test_deploy:
     jobs:
       - build
-      - build_voi_duong_dan_moi
+      - build_voi_duong_dan_moi:
           requires:
             - build
 #      - test_php72:
