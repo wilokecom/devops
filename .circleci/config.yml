@@ -200,6 +200,9 @@ jobs:
           paths:
             - vendor
       - run:
+          name: Workspace co gi
+          command: cd *workspace_root
+      - run:
           name: Build co gi 1
           command: ls -la
 #  build_voi_duong_dan_moi:
