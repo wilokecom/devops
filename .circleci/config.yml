@@ -37,7 +37,7 @@ references:
       command: cp -r /tmp/vendor ./../wordpress/wp-content/plugins/devops
   cp_main_plugin: &cp_main_plugin
     run:
-      name:  Copy the main to plugins folder
+      name: Copy the main to plugins folder
       command: rsync -av --progress . wp/wp-content/plugins/devops --exclude wp
   # Default configuration for all behat testing jobs
   #
@@ -71,8 +71,8 @@ references:
           command: ls -la
       - *attach_workspace
       - run:
-            name: Kiem tra attack workspace
-            command: ls -la
+          name: Kiem tra attack workspace
+          command: ls -la
       - run:
           # Our primary container isn't MYSQL so run a sleep command until it's ready.
           name: Waiting for MySQL to be ready
@@ -100,20 +100,20 @@ references:
       - run:
           name: Create Mysql Database
           command: mysql -h 127.0.0.1 -u root -e "create database wordpress;"
-#      - run:
-#          name: Start Mysql
-#          command: |
-#            echo "ServerName localhost
-#            <Directory ${working_directory}>
-#                  Options Indexes FollowSymLinks
-#                  AllowOverride All
-#                  Require all granted
-#            </Directory>" | sudo tee -a /etc/apache2/conf-available/localhost.conf > /dev/null
-#
-#            echo "<VirtualHost *:80>
-#                  DocumentRoot ${working_directory}
-#            </VirtualHost>" | sudo tee -a /etc/apache2/sites-available/localhost.conf > /dev/null
-#            sudo service apache2 restart
+      #      - run:
+      #          name: Start Mysql
+      #          command: |
+      #            echo "ServerName localhost
+      #            <Directory ${working_directory}>
+      #                  Options Indexes FollowSymLinks
+      #                  AllowOverride All
+      #                  Require all granted
+      #            </Directory>" | sudo tee -a /etc/apache2/conf-available/localhost.conf > /dev/null
+      #
+      #            echo "<VirtualHost *:80>
+      #                  DocumentRoot ${working_directory}
+      #            </VirtualHost>" | sudo tee -a /etc/apache2/sites-available/localhost.conf > /dev/null
+      #            sudo service apache2 restart
       - run:
           name: Install WordPress CLI
           command: .circleci/install-wp-cli.sh
@@ -121,19 +121,19 @@ references:
           name: Start PHP server
           command: sudo php -S localhost:8888 -t ${WP_CORE_DIR}
           background: true
-#      - run:
-#          name: Check WP folder
-#          command: ls -la wp
-#      - run:
-#          name: Install rsync
-#          command: sudo apt install rsync
-#      - run:
-#          name: Before copying the main plugin
-#          command: ls -la
-#      - *cp_main_plugin
-#      - run:
-#          name: Checkout github plugin
-#          command: cd ./../wordpress/wp-content/plugins/ && git clone https://github.com/wilokecom/devops.git
+      #      - run:
+      #          name: Check WP folder
+      #          command: ls -la wp
+      #      - run:
+      #          name: Install rsync
+      #          command: sudo apt install rsync
+      #      - run:
+      #          name: Before copying the main plugin
+      #          command: ls -la
+      #      - *cp_main_plugin
+      #      - run:
+      #          name: Checkout github plugin
+      #          command: cd ./../wordpress/wp-content/plugins/ && git clone https://github.com/wilokecom/devops.git
       - *copy_vendor
       - run:
           name: Generate Autoload
@@ -142,8 +142,8 @@ references:
           name: Check Plugin folder
           command: ls -la ./../wordpress/wp-content/plugins/devops/vendor
       - run:
-         name: Check WP folder
-         command: ls -la
+          name: Check WP folder
+          command: ls -la
       - run:
           name: Check WP folder 1
           command: cd ../ && ls -la
@@ -154,8 +154,8 @@ references:
           name: Check WP folder 3
           command: cd ../../ && ls -la
       - run:
-         name: Check WP folder 4
-         command: cd ../wordpress/wp-content/plugins/devops/vendor && ls -la
+          name: Check WP folder 4
+          command: cd ../wordpress/wp-content/plugins/devops/vendor && ls -la
       - run:
           name: Active the plugin
           command: ./wp-cli.phar plugin activate devops
@@ -177,12 +177,12 @@ jobs:
       WORKSPACE_ROOT: *workspace_root
     steps:
       - checkout
-#      - run:
-#          name: Kiem tra folder
-#          command: ls -la
-#      - run:
-#          name: Kiem tra folder cha
-#          command: cd ../ && ls -la
+      #      - run:
+      #          name: Kiem tra folder
+      #          command: ls -la
+      #      - run:
+      #          name: Kiem tra folder cha
+      #          command: cd ../ && ls -la
       - run:
           name: Update Composer
           command: sudo composer self-update
@@ -215,7 +215,8 @@ jobs:
       - run:
           name: Kiem tra lai working directory
           command: ls -la
-      - *attach_workspace
+      - attach_workspace:
+          at: ~/wiloke
       - run:
           name: Kiem tra attack workspace
           command: ls -la
@@ -226,8 +227,8 @@ jobs:
           name: Kiem tra folder cha
           command: cd ../ && ls -la
       - run:
-         name: Kiem tra folder ong
-         command: cd ../../ && ls -la
+          name: Kiem tra folder ong
+          command: cd ../../ && ls -la
 #  test_php72:
 #    <<: *phpunit_job
 #    docker:
