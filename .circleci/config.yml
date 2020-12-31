@@ -56,23 +56,23 @@ references:
           MYSQL_DATABASE: wordpress
           PHPUNIT: ./wp/wp-content/plugins/devops/vendor/bin/phpunit
     steps:
-      - checkout
+#      - checkout
       - run:
           name: Add WordPress host to hosts file
           command: echo "127.0.0.1 ${WP_HOST}" | sudo tee -a /etc/hosts
-      - run:
-          name: Truoc khi copy workspace
-          command: ls -la
-      - run:
-          name: Workspace co gi
-          command: cd *workspace_root && ls -la
-      - run:
-          name: Kiem tra lai working directory
-          command: ls -la
+#      - run:
+#          name: Truoc khi copy workspace
+#          command: ls -la
+#      - run:
+#          name: Workspace co gi
+#          command: cd *workspace_root && ls -la
+#      - run:
+#          name: Kiem tra lai working directory
+#          command: ls -la
       - *attach_workspace
-      - run:
-          name: Kiem tra attack workspace
-          command: ls -la
+#      - run:
+#          name: Kiem tra attack workspace
+#          command: ls -la
       - run:
           # Our primary container isn't MYSQL so run a sleep command until it's ready.
           name: Waiting for MySQL to be ready
@@ -117,6 +117,8 @@ references:
       - run:
           name: Install WordPress CLI
           command: .circleci/install-wp-cli.sh
+      - checkout:
+          path: ./wp-content/plugins
       - run:
           name: Start PHP server
           command: sudo php -S localhost:8888 -t ${WP_CORE_DIR}
@@ -134,34 +136,34 @@ references:
       #      - run:
       #          name: Checkout github plugin
       #          command: cd ./../wordpress/wp-content/plugins/ && git clone https://github.com/wilokecom/devops.git
-      - *copy_vendor
-      - run:
-          name: Generate Autoload
-          command: cd ./../wordpress/wp-content/plugins/devops & composer dump-autoload
-      - run:
-          name: Check Plugin folder
-          command: ls -la ./../wordpress/wp-content/plugins/devops/vendor
-      - run:
-          name: Check WP folder
-          command: ls -la
-      - run:
-          name: Check WP folder 1
-          command: cd ../ && ls -la
-      - run:
-          name: Check WP folder 2
-          command: cd ../wordpress && ls -la
-      - run:
-          name: Check WP folder 3
-          command: cd ../../ && ls -la
-      - run:
-          name: Check WP folder 4
-          command: cd ../wordpress/wp-content/plugins/devops/vendor && ls -la
-      - run:
-          name: Active the plugin
-          command: ./wp-cli.phar plugin activate devops
-      - run:
-          name: PHP Unit Test
-          command: ./../wordpress/wp-content/plugins/devops/vendor/bin/phpunit tests
+#      - *copy_vendor
+#      - run:
+#          name: Generate Autoload
+#          command: cd ./../wordpress/wp-content/plugins/devops & composer dump-autoload
+#      - run:
+#          name: Check Plugin folder
+#          command: ls -la ./../wordpress/wp-content/plugins/devops/vendor
+#      - run:
+#          name: Check WP folder
+#          command: ls -la
+#      - run:
+#          name: Check WP folder 1
+#          command: cd ../ && ls -la
+#      - run:
+#          name: Check WP folder 2
+#          command: cd ../wordpress && ls -la
+#      - run:
+#          name: Check WP folder 3
+#          command: cd ../../ && ls -la
+#      - run:
+#          name: Check WP folder 4
+#          command: cd ../wordpress/wp-content/plugins/devops/vendor && ls -la
+#      - run:
+#          name: Active the plugin
+#          command: ./wp-cli.phar plugin activate devops
+#      - run:
+#          name: PHP Unit Test
+#          command: ./../wordpress/wp-content/plugins/devops/vendor/bin/phpunit tests
   # Default configuration for all phpunit testing jobs
   #
   phpunit_job: &phpunit_job
@@ -246,9 +248,9 @@ workflows:
   build_test_deploy:
     jobs:
       - build
-      - build_voi_duong_dan_moi:
-          requires:
-            - build
+#      - build_voi_duong_dan_moi:
+#          requires:
+#            - build
 #      - test_php72:
 #          requires:
 #            - build
