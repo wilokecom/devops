@@ -170,6 +170,8 @@ references:
 jobs:
   build:
     <<: *container_config
+    enviroment:
+      WORKSPACE_ROOT: *workspace_root
     steps:
       - checkout
 #      - run:
@@ -201,7 +203,7 @@ jobs:
             - vendor
       - run:
           name: Workspace co gi
-          command: cd *workspace_root
+          command: cd $WORKSPACE_ROOT
       - run:
           name: Build co gi 1
           command: ls -la
