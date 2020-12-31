@@ -71,6 +71,9 @@ references:
           command: ls -la
       - *attach_workspace
       - run:
+            name: Kiem tra attack workspace
+            command: ls -la
+      - run:
           # Our primary container isn't MYSQL so run a sleep command until it's ready.
           name: Waiting for MySQL to be ready
           command: |
@@ -202,25 +205,29 @@ jobs:
           paths:
             - vendor
       - run:
-          name: Workspace co gi
-          command: ls -la /tmp && ls -la /tmp/circleci-* && ls -la /tmp/pear/cache && ls -la /tmp/pear/temp && ls -la /tmp/pear/download
-      - run:
           name: Build co gi 1
           command: ls -la
-#  build_voi_duong_dan_moi:
-#    docker:
-#      - image: circleci/php:7.2-apache
-#    working_directory: ~/wiloke
-#    steps:
-#      - run:
-#          name: Kiem tra folder
-#          command: ls -la
-#      - run:
-#          name: Kiem tra folder cha
-#          command: cd ../ && ls -la
-#      - run:
-#         name: Kiem tra folder ong
-#         command: cd ../../ && ls -la
+  build_voi_duong_dan_moi:
+    docker:
+      - image: circleci/php:7.2-apache
+    working_directory: ~/wiloke
+    steps:
+      - run:
+          name: Kiem tra lai working directory
+          command: ls -la
+      - *attach_workspace
+      - run:
+          name: Kiem tra attack workspace
+          command: ls -la
+      - run:
+          name: Kiem tra folder
+          command: ls -la
+      - run:
+          name: Kiem tra folder cha
+          command: cd ../ && ls -la
+      - run:
+         name: Kiem tra folder ong
+         command: cd ../../ && ls -la
 #  test_php72:
 #    <<: *phpunit_job
 #    docker:
@@ -238,9 +245,9 @@ workflows:
   build_test_deploy:
     jobs:
       - build
-#      - build_voi_duong_dan_moi:
-#          requires:
-#            - build
+      - build_voi_duong_dan_moi:
+          requires:
+            - build
 #      - test_php72:
 #          requires:
 #            - build
