@@ -198,7 +198,7 @@ jobs:
           name: Build co gi
           command: ls -la
       - persist_to_workspace:
-          root: /tmp
+          root: .
           paths:
             - vendor
       - run:
