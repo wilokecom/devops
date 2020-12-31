@@ -254,6 +254,6 @@ workflows:
 #      - test_php72:
 #          requires:
 #            - build
-#      - acceptance_singlesite:
-#          requires:
-#            - build
+      - acceptance_singlesite:
+          requires:
+            - build
